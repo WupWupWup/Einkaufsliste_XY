@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/add"
+        android:layout_marginLeft="12dp"
+        android:text="@string/add" />
+
+    <ImageButton
+        android:id="@+id/IBTN_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:onClick="removeDatabaseItem"
+        android:contentDescription="@string/delete"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/delete" />
+
+    <ImageButton
+        android:id="@+id/IBTN_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/edit"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/IBTN_delete"
+        android:background="@android:color/transparent"
+        android:src="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/IBTN_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/add"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:onClick="addToList"
+        android:layout_toLeftOf="@+id/IBTN_edit"
+        android:background="@android:color/transparent"
+        android:src="@drawable/add" />
+
+    </RelativeLayout>
+
+</LinearLayout>
