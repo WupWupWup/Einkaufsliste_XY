@@ -1202,10 +1202,9 @@ containing a value of this type.
         public static final int load_list=0x7f020062;
     }
     public static final class id {
-        public static final int IBTN_add=0x7f060061;
-        public static final int IBTN_delete=0x7f06005f;
-        public static final int IBTN_edit=0x7f060060;
-        public static final int action_back=0x7f060068;
+        public static final int IBTN_add=0x7f060060;
+        public static final int IBTN_delete=0x7f06005e;
+        public static final int IBTN_edit=0x7f06005f;
         public static final int action_bar=0x7f06002d;
         public static final int action_bar_activity_content=0x7f060026;
         public static final int action_bar_container=0x7f06002c;
@@ -1214,12 +1213,10 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f060034;
         public static final int action_bar_title=0x7f060033;
         public static final int action_context_bar=0x7f06002e;
-        public static final int action_forward=0x7f060069;
         public static final int action_menu_divider=0x7f060027;
         public static final int action_menu_presenter=0x7f060028;
         public static final int action_mode_close_button=0x7f060035;
-        public static final int action_search=0x7f060067;
-        public static final int action_settings=0x7f060065;
+        public static final int action_settings=0x7f060064;
         public static final int activity_chooser_view_content=0x7f060036;
         public static final int alignBounds=0x7f060002;
         public static final int alignMargins=0x7f060003;
@@ -1230,7 +1227,7 @@ containing a value of this type.
         public static final int btn_browse_database=0x7f06004f;
         public static final int btn_dialog_cancel=0x7f060056;
         public static final int btn_dialog_ok=0x7f060057;
-        public static final int button1=0x7f06005b;
+        public static final int btn_reset=0x7f060059;
         public static final int center=0x7f06000c;
         public static final int center_horizontal=0x7f06000a;
         public static final int center_vertical=0x7f060008;
@@ -1242,32 +1239,31 @@ containing a value of this type.
         public static final int dialog=0x7f060020;
         public static final int disableHome=0x7f06001a;
         public static final int dropdown=0x7f060021;
-        public static final int editText1=0x7f060059;
         public static final int edit_query=0x7f060041;
         public static final int end=0x7f060011;
         public static final int et_dialog_product_description=0x7f060053;
-        public static final int et_dialog_product_filename=0x7f060064;
+        public static final int et_dialog_product_filename=0x7f060063;
         public static final int et_dialog_product_name=0x7f060051;
         public static final int et_dialog_product_price=0x7f060055;
-        public static final int et_search=0x7f06005a;
+        public static final int et_search=0x7f060058;
         public static final int expand_activities_button=0x7f060037;
         public static final int expanded_menu=0x7f06003d;
         public static final int fill=0x7f06000d;
         public static final int fill_horizontal=0x7f06000b;
         public static final int fill_vertical=0x7f060009;
-        public static final int gestures=0x7f060058;
         public static final int home=0x7f060025;
         public static final int homeAsUp=0x7f060017;
         public static final int horizontal=0x7f060000;
         public static final int icon=0x7f06003b;
         public static final int ifRoom=0x7f06001c;
         public static final int image=0x7f060038;
-        public static final int lblListHeader=0x7f06005c;
-        public static final int lblListItem=0x7f06005d;
+        public static final int lblListHeader=0x7f06005b;
+        public static final int lblListItem=0x7f06005c;
         public static final int left=0x7f060006;
         public static final int listMode=0x7f060013;
         public static final int list_item=0x7f06003a;
-        public static final int lvExp=0x7f060062;
+        public static final int ll_delete=0x7f06005a;
+        public static final int lvExp=0x7f060061;
         public static final int main_ac=0x7f06004d;
         public static final int middle=0x7f060024;
         public static final int never=0x7f06001b;
@@ -1277,7 +1273,7 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f06002a;
         public static final int radio=0x7f060040;
         public static final int right=0x7f060007;
-        public static final int save_list=0x7f060066;
+        public static final int save_list=0x7f060065;
         public static final int search_badge=0x7f060043;
         public static final int search_bar=0x7f060042;
         public static final int search_button=0x7f060044;
@@ -1300,10 +1296,10 @@ containing a value of this type.
         public static final int top=0x7f060004;
         public static final int top_action_bar=0x7f060031;
         public static final int tv_dialog_product_description=0x7f060052;
-        public static final int tv_dialog_product_filename=0x7f060063;
+        public static final int tv_dialog_product_filename=0x7f060062;
         public static final int tv_dialog_product_name=0x7f060050;
         public static final int tv_dialog_product_price=0x7f060054;
-        public static final int tv_product_name=0x7f06005e;
+        public static final int tv_product_name=0x7f06005d;
         public static final int up=0x7f060032;
         public static final int useLogo=0x7f060015;
         public static final int vertical=0x7f060001;
@@ -1361,16 +1357,16 @@ containing a value of this type.
         public static final int activity_main=0x7f030017;
         public static final int add_dialog=0x7f030018;
         public static final int browsedatabase_activity=0x7f030019;
-        public static final int exp_list_group=0x7f03001a;
-        public static final int exp_list_item=0x7f03001b;
-        public static final int group=0x7f03001c;
-        public static final int loadlist_activity=0x7f03001d;
-        public static final int save_dialog=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int delete_dialog=0x7f03001a;
+        public static final int exp_list_group=0x7f03001b;
+        public static final int exp_list_item=0x7f03001c;
+        public static final int group=0x7f03001d;
+        public static final int loadlist_activity=0x7f03001e;
+        public static final int save_dialog=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;
-        public static final int menu_forward_back=0x7f0e0001;
     }
     public static final class raw {
         public static final int gestures=0x7f050000;
@@ -1437,7 +1433,7 @@ containing a value of this type.
         public static final int product_name=0x7f0b0023;
         public static final int save_list=0x7f0b0010;
         public static final int search=0x7f0b001f;
-        public static final int search_go=0x7f0b0020;
+        public static final int search_reset=0x7f0b0020;
         public static final int version=0x7f0b001d;
     }
     public static final class style {

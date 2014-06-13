@@ -2,7 +2,6 @@ package com.example.xy;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.database.xy.Product;
 import com.database.xy.SQLiteDatabaseQueryHandler;
 
@@ -36,6 +35,7 @@ public class BrowseDatabaseActivity extends Activity
 	private EditText et_product_filename;
 	private EditText et_search_field;
 	private ListView lv;
+	private Context context;
 	
 	
 	@Override
@@ -43,27 +43,27 @@ public class BrowseDatabaseActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.browsedatabase_activity);
+		lv = (ListView)findViewById(android.R.id.list);
 		et_search_field = (EditText) findViewById(R.id.et_search);
+		
 		et_search_field.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                // TODO Auto-generated method stub
             }
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                // TODO Auto-generated method stub
             }
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
+				if(!s.toString().isEmpty())
+					new SearchDatabaseEntry().execute(s.toString());
+				else
+					lv.setAdapter(adapter);
 			}
         });
-		new GetListViewData().execute(this);
+		context = this;
+		new GetListViewData().execute(context);
 	}
 	
 	@Override
@@ -92,6 +92,12 @@ public class BrowseDatabaseActivity extends Activity
 	        default:
 	            return false;
 	    }
+	}
+	
+	public void resetSearch(View view)
+	{
+		lv.setAdapter(adapter);
+		et_search_field.setText(null);
 	}
 	
 	private void show_dialog()
@@ -179,9 +185,32 @@ public class BrowseDatabaseActivity extends Activity
 		dialog.show();
 	}
 	
-	public void removeDatabaseItem(View v) 
+	public void removeDatabaseItem(final View view) 
 	{
-		new RemoveDatabaseEntry().execute(v);
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.delete_dialog);
+		dialog.setTitle("Produkt löschen...");
+		
+		Button dialogButtonOk = (Button) dialog.findViewById(R.id.btn_dialog_ok);
+		dialogButtonOk.setOnClickListener(new View.OnClickListener() 
+		{
+			public void onClick(View v) 
+			{
+				new RemoveDatabaseEntry().execute(view);
+				dialog.dismiss();
+			}
+		});
+		
+		Button dialogButtonDismiss = (Button) dialog.findViewById(R.id.btn_dialog_cancel);
+		dialogButtonDismiss.setOnClickListener(new View.OnClickListener() 
+		{
+			public void onClick(View v) 
+			{
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
 	}
 	
 	public void addToList(View v)
@@ -191,6 +220,8 @@ public class BrowseDatabaseActivity extends Activity
 		 */
 		Product itemToAdd = (Product)v.getTag();
 		shoppinglist.add(itemToAdd);
+		Toast.makeText(getApplicationContext(), "Produkt zur Einkaufsliste hinzugefügt",
+				   Toast.LENGTH_LONG).show();	
 	}
 	
 	public void saveList(String dataName)
@@ -202,7 +233,9 @@ public class BrowseDatabaseActivity extends Activity
 		{
 			XMLHandler handler = new XMLHandler(dataName,(ArrayList<Product>)shoppinglist);
 			handler.generateXMLFile();
-		}
+		}else
+			Toast.makeText(getApplicationContext(), "Die Einkaufsliste ist leer!",
+					   Toast.LENGTH_LONG).show();	
 	}
 	
 	private class GetListViewData extends AsyncTask<Context, Void, ListViewAdapter>
@@ -218,7 +251,6 @@ public class BrowseDatabaseActivity extends Activity
 
 	     protected void onPostExecute(ListViewAdapter result)
 	     {
-	    	lv = (ListView)findViewById(android.R.id.list);
 		 	lv.setAdapter(adapter);	
 	     }
 	 }
@@ -259,10 +291,39 @@ public class BrowseDatabaseActivity extends Activity
 	     protected void onPostExecute(Product itemToRemove)
 	     {
 	    	 /*
-	    	  * Löscht das Produkt aus der Datenbank
+	    	  * Löscht das Produkt aus der ListView
 	    	  */
 	    	 adapter.remove(itemToRemove);
 	    	 adapter.notifyDataSetChanged();
 	     }
+	 }
+	
+	private class SearchDatabaseEntry extends AsyncTask<String, Void, ListViewAdapter>
+	{
+	    protected ListViewAdapter doInBackground(String... name) 
+	    {
+	    	if(!name[0].isEmpty())
+	    	{
+		    	ArrayList<Product> result = SQLiteDatabaseQueryHandler.getProduct(name[0]);
+		    	if(!result.isEmpty())
+		    	{
+			    	search_result_adapter = new ListViewAdapter(context, R.layout.group,result);
+			 		return search_result_adapter;
+		    	}
+		    	else
+		    		return adapter;
+	    	}
+	    	else
+	    		return adapter;	
+	    }
+
+		protected void onPostExecute(ListViewAdapter search_)
+	    {
+			if(!search_.equals(adapter))
+				lv.setAdapter(search_);
+			else
+				Toast.makeText(getApplicationContext(), "Produkt konnte nicht gefunden werden!",
+						   Toast.LENGTH_LONG).show();		
+	    }
 	 }
 }

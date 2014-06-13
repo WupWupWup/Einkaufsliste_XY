@@ -5,8 +5,6 @@ import com.database.xy.SQLiteDatabaseQueryHandler;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 
 public class MainActivity extends ActionBarActivity
@@ -14,14 +12,6 @@ public class MainActivity extends ActionBarActivity
 	
 	@SuppressWarnings("unused")
 	private SQLiteDatabaseQueryHandler databaseQueryHandler;
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_forward_back, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,3 +33,4 @@ public class MainActivity extends ActionBarActivity
 		startActivity(intent);
 	}
 }
+

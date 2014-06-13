@@ -20,19 +20,19 @@ public class SQLiteDatabaseQueryHandler
 		db.getWritableDatabase();
 	}
 	
-	public static Cursor fetchGroup() 
-	{
-		SQLiteDatabase database = db.getReadableDatabase();
-	    String query = "SELECT * FROM Produkte";
-	    return database.rawQuery(query, null);
-	}
-
-	public static Cursor fetchChildren(String name) 
-	{
-		SQLiteDatabase database = db.getReadableDatabase();
-	    String query = "SELECT * FROM Produkte WHERE Produkt = '" + name + "'";
-	    return database.rawQuery(query, null);
-	}
+//	public static Cursor fetchGroup() 
+//	{
+//		SQLiteDatabase database = db.getReadableDatabase();
+//	    String query = "SELECT * FROM Produkte";
+//	    return database.rawQuery(query, null);
+//	}
+//
+//	public static Cursor fetchChildren(String name) 
+//	{
+//		SQLiteDatabase database = db.getReadableDatabase();
+//	    String query = "SELECT * FROM Produkte WHERE Produkt = '" + name + "'";
+//	    return database.rawQuery(query, null);
+//	}
 	
 	public static void addProduct(Product product)
 	{
@@ -52,16 +52,26 @@ public class SQLiteDatabaseQueryHandler
 		database.insert(SQLiteDatabaseHandler.DATABASE_NAME, null, value);
 	}
 
-	public static Product getProduct(String name /* ... */)
+	public static ArrayList<Product> getProduct(String name /* ... */)
 	{
-		 SQLiteDatabase database = db.getReadableDatabase();
-		 
-		 Cursor cursor = database.rawQuery("select * from Produkte where Produkt ='"+name+"'", null);
-		 cursor.moveToFirst();
-		 
-		 /* Rückgabe des Produktnamens */
-		 
-		 return new Product(cursor.getString(1),cursor.getString(2),Double.parseDouble(cursor.getString(3)));
+		SQLiteDatabase database = db.getReadableDatabase();
+		ArrayList<Product> results = new ArrayList<Product>();
+		
+		Cursor cursor = database.rawQuery("select Produkt,Beschreibung,Preis from Produkte where Produkt like '%"+name+"%'",null);
+		if (cursor != null) 
+		{
+    		if  (cursor.moveToFirst()) 
+    		{
+    			do 
+    			{
+    				Product product = new Product(cursor.getString(cursor.getColumnIndex("Produkt"))
+    				, cursor.getString(cursor.getColumnIndex("Beschreibung"))
+    				, Double.parseDouble(cursor.getString(cursor.getColumnIndex("Preis"))));
+    				results.add(product);
+    			}while (cursor.moveToNext());
+    		} 
+    	}
+		return results;
 	}
 	
 	public static ArrayList<Product> getAllProducts()
