@@ -6,6 +6,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="src" path="/appcompat_v7_3"/>
-	<classpathentry kind="lib" path="C:/Users/Timo/Desktop/adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/v7/gridlayout"/>
+	<classpathentry kind="lib" path="jar/android-support-v7-gridlayout.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
